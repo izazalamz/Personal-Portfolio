@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Izaz Alam's projects and experience — course work, personal builds, and technical explorations.">
+  <meta name="author" content="Izaz Alam">
+  <meta name="keywords" content="Izaz Alam, projects, experience, BRAC University, web development, backend">
+  <title>Projects &amp; Experience | Izaz Alam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* =========================================
+       PROJECTS PAGE SPECIFIC STYLES
+       ========================================= */
+
+    .page-intro {
+      max-width: 580px;
+      margin-bottom: 1.75rem;
+    }
+
+    /* STICKY NAVIGATION  */
+    .page-anchor-nav {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      padding: 0.5rem 0;
+    }
+
+    .anchor-link {
+      padding: 0.4rem 1rem;
+      background: transparent;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      white-space: nowrap;
+    }
+
+    .anchor-link:hover {
+      background: rgba(0, 191, 255, 0.15);
+      color: var(--accent);
+      border-color: var(--border-accent);
+    }
+
+    .anchor-link.active-link {
+      background: rgba(0, 191, 255, 0.2);
+      color: var(--accent);
+      border-color: var(--border-accent);
+    }
+
+    /* CONTENT SECTIONS */
+    .content-section {
+      margin-bottom: 5rem;
+    }
+
+    .section-label-wrap {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .section-label {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      white-space: nowrap;
+    }
+
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background-color: var(--border);
+    }
+
+    /* PROJECT CARDS */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .project-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: border-color var(--transition), transform var(--transition);
+    }
+
+    .project-card:hover {
+      border-color: var(--border-accent);
+      transform: translateY(-3px);
+    }
+
+    .project-card-image {
+      height: 180px;
+      background-color: var(--bg-secondary);
+      overflow: hidden;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.75rem;
+    }
+
+    .project-card-image.img-fallback::after {
+      content: "[ Image Placeholder ]";
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .project-card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease, opacity 0.3s ease;
+    }
+
+    .project-card:hover .project-card-image img {
+      transform: scale(1.05);
+      opacity: 0.7;
+    }
+
+    .project-card-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .project-card:hover .project-card-overlay {
+      opacity: 1;
+    }
+
+    .overlay-link {
+      padding: 0.55rem 1.25rem;
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    .overlay-link:hover {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .project-card-body {
+      padding: 1.4rem;
+    }
+
+    .project-card-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .project-card-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .project-card-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    /* COURSE PROJECTS */
+    .course-projects-list {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .course-project-item {
+      display: flex;
+      gap: 1.5rem;
+      align-items: stretch;
+    }
+
+    .course-project-left {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .course-code-label {
+      font-size: 0.65rem;
+      font-weight: 700;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      background-color: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-sm);
+      padding: 0.3rem 0.6rem;
+      white-space: nowrap;
+    }
+
+    .course-connector {
+      flex: 1;
+      width: 1px; 
+      background-color: var(--border);
+      margin-top: 0.5rem;
+    }
+
+    .course-project-right {
+      flex: 1;
+      padding-bottom: 0.5rem;
+    }
+
+    .course-project-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      transition: border-color var(--transition);
+    }
+
+    .course-project-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .course-project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 0.75rem;
+      gap: 0.5rem;
+    }
+
+    .course-project-top h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+
+    .course-project-card p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    .course-project-card p a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .course-project-card p a:hover {
+      text-decoration: underline;
+    }
+
+    /* EXPERIENCE TIMELINE */
+    .experience-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .experience-item {
+      display: flex;
+      gap: 2rem;
+      position: relative;
+      padding-bottom: 2.5rem;
+    }
+
+    .experience-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .experience-item:not(:last-child)::after {
+      content: "";
+      position: absolute;
+      left: 40px;
+      top: 36px;
+      bottom: 0;
+      width: 1px;
+      background-color: var(--border);
+    }
+
+    .exp-date-col {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex-shrink: 0;
+      width: 48px;
+    }
+
+    .exp-date {
+      font-size: 0.68rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.05em;
+    }
+
+    .exp-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      border: 2px solid var(--bg-primary);
+      box-shadow: 0 0 0 2px var(--border-accent);
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .exp-content {
+      flex: 1;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.4rem 1.6rem;
+      transition: border-color var(--transition);
+    }
+
+    .exp-content:hover {
+      border-color: var(--border-accent);
+    }
+
+    .exp-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .exp-org {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-bottom: 0.75rem;
+    }
+
+    .exp-org a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    .exp-org a:hover {
+      text-decoration: underline;
+    }
+
+    .exp-desc {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+    }
+
+    /* RESPONSIVE — PROJECTS */
+    @media (max-width: 900px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 680px) {
+      .experience-item::after {
+        left: 24px;
+      }
+      .exp-date-col {
+        width: 32px;
+      }
+      .course-project-item {
+        flex-direction: column;
+        gap: 0.75rem;
+      }
+      .course-project-left {
+        flex-direction: row;
+        gap: 1rem;
+      }
+      .course-connector {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger Toggle  -->
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <div class="sidebar-overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <img src="images/dp.png" alt="Izaz Alam">
+      </div>
+      <div class="sidebar-logo-text">Izaz Alam<span>CS Student</span></div>
+    </div>
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html"><span class="nav-icon"><img src="images/icons/home.png" alt="Home"></span>Home</a></li>
+        <li><a href="index.html#about"><span class="nav-icon"><img src="images/icons/profile.png" alt="About Me"></span>About Me</a></li>
+        <li><a href="index.html#education"><span class="nav-icon"><img src="images/icons/education.png" alt="Education"></span>Education</a></li>
+        <li><a href="index.html#skills"><span class="nav-icon"><img src="images/icons/skills.png" alt="Skills"></span>Skills</a></li>
+        <li><a href="index.html#quote"><span class="nav-icon"><img src="images/icons/quote.png" alt="Quote"></span>Quote</a></li>
+        <li><a href="index.html#books"><span class="nav-icon"><img src="images/icons/book.png" alt="Books"></span>Books</a></li>
+        <li><a href="index.html#roadmap"><span class="nav-icon"><img src="images/icons/roadmap.png" alt="Roadmap"></span>Roadmap</a></li>
+        <li><a href="hobbies.html"><span class="nav-icon"><img src="images/icons/hobbies.png" alt="Hobbies"></span>Hobbies</a></li>
+        <li><a href="projects.html" class="active"><span class="nav-icon"><img src="images/icons/project.png" alt="Projects"></span>Projects</a></li>
+        <li><a href="index.html#contact"><span class="nav-icon"><img src="images/icons/contact.png" alt="Contact"></span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-contact-item">
+        <div class="sidebar-contact-label">Email</div>
+        <div class="sidebar-contact-value"><a href="mailto:izazalam74@gmail.com">izazalam74@gmail.com</a></div>
+      </div>
+      <div class="sidebar-contact-item">
+        <div class="sidebar-contact-label">Location</div>
+        <div class="sidebar-contact-value">Dhaka, Bangladesh</div>
+      </div>
+      <div class="sidebar-socials">
+        <a href="https://github.com/izazalamz/" target="_blank" class="social-btn" title="GitHub"><img src="images/icons/github.png" alt="GitHub"></a>
+        <a href="https://www.linkedin.com/in/izazalam/" target="_blank" class="social-btn" title="LinkedIn"><img src="images/icons/linkedin.png" alt="LinkedIn"></a>
+        <a href="https://discord.gg/kfs8DwbRc" target="_blank" class="social-btn" title="CSE 391 Discord"><img src="images/icons/discord.png" alt="Discord"></a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <p class="page-eyebrow">What I've Built</p>
+      <h1 class="page-title">Projects &amp; <span>Experience</span></h1>
+      <div class="page-divider"></div>
+      <p class="page-intro">
+        A mix of academic coursework and personal side projects. Everything here was built
+        to learn something, solve something, or both.
+      </p>
+      <div class="page-anchor-nav">
+        <a href="#personal-projects" class="anchor-link active-link">Personal Projects</a>
+        <a href="#course-projects" class="anchor-link">Course Projects</a>
+        <a href="#experience" class="anchor-link">Experience</a>
+      </div>
+    </section>
+
+    <!-- ===== PERSONAL PROJECTS ===== -->
+    <section class="content-section" id="personal-projects">
+      <div class="section-label-wrap">
+        <h2 class="section-label">Personal Projects</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="projects-grid">
+
+        <!-- Project 1 -->
+        <article class="project-card">
+          <div class="project-card-image img-fallback">
+            <div class="project-card-overlay">
+              <a href="https://github.com/izazalamz/Vehicle-Rental-System-PostgreSQL" target="_blank"   class="overlay-link">View on GitHub</a>
+            </div>
+          </div>
+
+          <div class="project-card-body">
+            <div class="project-card-top">
+              <h3 class="project-card-title">Vehicle Rental System (PostgreSQL)</h3>
+              <span class="status-badge complete">Complete</span>
+            </div>
+            <p class="project-card-desc">
+              Designed and implemented a relational database for a vehicle rental
+              system using PostgreSQL. Created normalized tables with primary and
+              foreign key relationships, developed an ER diagram, and wrote complex
+              SQL queries involving JOINs, GROUP BY, HAVING, and NOT EXISTS to
+              manage bookings, users, and vehicles efficiently.
+            </p>
+            <div class="project-card-tech">
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">SQL</span>
+              <span class="tech-pill">ERD</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 2 -->
+        <article class="project-card">
+          <div class="project-card-image img-fallback">
+            <div class="project-card-overlay">
+              <a href="https://github.com/izazalamz/vehicle-rental-system" target="_blank"   class="overlay-link">View on GitHub</a>
+            </div>
+          </div>
+
+          <div class="project-card-body">
+            <div class="project-card-top">
+              <h3 class="project-card-title">Vehicle Rental System Backend API</h3>
+              <span class="status-badge complete">Complete</span>
+            </div>
+            <p class="project-card-desc">
+              Developed a RESTful backend API for a vehicle rental platform with
+              JWT authentication and role-based authorization. Implemented user,
+              vehicle, and booking management, automatic pricing calculations,
+              booking lifecycle management, and secure CRUD operations using
+              PostgreSQL.
+            </p>
+            <div class="project-card-tech">
+              <span class="tech-pill">Node.js</span>
+              <span class="tech-pill">Express.js</span>
+              <span class="tech-pill">TypeScript</span>
+              <span class="tech-pill">PostgreSQL</span>
+              <span class="tech-pill">JWT</span>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project 3 -->
+        <article class="project-card">
+          <div class="project-card-image img-fallback">
+            <div class="project-card-overlay">
+              <a href="https://github.com/izazalamz/Kanban" target="_blank"   class="overlay-link">View on GitHub</a>
+            </div>
+          </div>
+
+          <div class="project-card-body">
+            <div class="project-card-top">
+              <h3 class="project-card-title">Kanban Task Board</h3>
+              <span class="status-badge complete">Complete</span>
+            </div>
+            <p class="project-card-desc">
+              Built a lightweight Kanban task management application using
+              vanilla HTML, CSS, and JavaScript. Users can create, edit, delete,
+              and organize tasks across workflow columns through an intuitive
+              drag-and-drop interface, with all data stored locally in the browser.
+            </p>
+            <div class="project-card-tech">
+              <span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS</span>
+              <span class="tech-pill">JavaScript</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- ===== COURSE PROJECTS ===== -->
+    <section class="content-section" id="course-projects">
+      <div class="section-label-wrap">
+        <h2 class="section-label">Course Projects</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="course-projects-list">
+
+        <!-- CSE370 -->
+        <div class="course-project-item">
+          <div class="course-project-left">
+            <span class="course-code-label">CSE 370</span>
+            <div class="course-connector"></div>
+          </div>
+
+          <div class="course-project-right">
+            <div class="course-project-card">
+              <div class="course-project-top">
+                <h3>Fotofolio — Photographer Hiring Platform</h3>
+                <span class="status-badge complete">Complete</span>
+              </div>
+              <p>
+                Fotofolio is a full-stack web application where clients can post photography
+                jobs and photographers can apply for them. Clients review applications,
+                choose a photographer, and confirm the booking. The project demonstrates
+                core DBMS concepts including relational database design, SQL queries,
+                joins, transactions, authentication, and role-based access control.
+              </p>
+              <div class="course-project-tech">
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">Express</span>
+                <span class="tech-pill">SQLite</span>
+                <span class="tech-pill">JWT</span>
+                <span class="tech-pill">Tailwind CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSE470 -->
+        <div class="course-project-item">
+          <div class="course-project-left">
+            <span class="course-code-label">CSE 470</span>
+            <div class="course-connector"></div>
+          </div>
+
+          <div class="course-project-right">
+            <div class="course-project-card">
+              <div class="course-project-top">
+                <h3>LocalBite — Share Homemade Meals with Your Community</h3>
+                <span class="status-badge complete">Complete</span>
+              </div>
+              <p>
+                LocalBite is an ongoing Software Engineering project that connects
+                students and local residents through homemade meals. Users can share
+                extra food, discover affordable meals nearby, and support local home
+                cooks while reducing food waste. The project follows the MVC
+                architecture and is currently under active development.
+              </p>
+              <div class="course-project-tech">
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">Express</span>
+                <span class="tech-pill">MongoDB</span>
+                <span class="tech-pill">JWT</span>
+                <span class="tech-pill">Tailwind CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- CSE471 -->
+        <div class="course-project-item">
+          <div class="course-project-left">
+            <span class="course-code-label">CSE 471</span>
+            <div class="course-connector"></div>
+          </div>
+
+          <div class="course-project-right">
+            <div class="course-project-card">
+              <div class="course-project-top">
+                <h3>WorkNest — Smart Hybrid Workspace Management System</h3>
+                <span class="status-badge complete">Complete</span>
+              </div>
+              <p>
+                WorkNest is a hybrid workspace management system designed to simplify
+                desk booking, meeting room reservations, attendance tracking, and
+                workspace organization. Employees can reserve workspaces while
+                administrators manage resources through role-based dashboards. The
+                project is currently being expanded with additional features.
+              </p>
+              <div class="course-project-tech">
+                <span class="tech-pill">React</span>
+                <span class="tech-pill">Node.js</span>
+                <span class="tech-pill">Express</span>
+                <span class="tech-pill">MongoDB</span>
+                <span class="tech-pill">JWT</span>
+                <span class="tech-pill">Tailwind CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ===== EXPERIENCE ===== -->
+    <section class="content-section" id="experience">
+      <div class="section-label-wrap">
+        <h2 class="section-label">Experience</h2>
+        <div class="section-line"></div>
+      </div>
+
+      <div class="experience-list">
+
+        <div class="experience-item">
+          <div class="exp-date-col">
+            <span class="exp-date">2026</span>
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-content">
+            <h3 class="exp-title">Software Engineering Intern</h3>
+            <p class="exp-org">Echologyx Ltd. Dhaka</p>
+            <p class="exp-desc">
+              Worked as a Software Engineering Intern, performing A/B testing for
+              clients around the world. Built and modified experiment variants using
+              HTML, CSS, and JavaScript to evaluate user experience and optimize
+              website performance through controlled experiments.
+            </p>
+            <div>
+              <span class="tech-pill">HTML</span>
+              <span class="tech-pill">CSS</span>
+              <span class="tech-pill">JavaScript</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="experience-item">
+          <div class="exp-date-col">
+            <span class="exp-date">2022</span>
+            <div class="exp-dot"></div>
+          </div>
+          <div class="exp-content">
+            <h3 class="exp-title">Started B.Sc. CSE at BRAC University</h3>
+            <p class="exp-org">
+              <a href="https://www.bracu.ac.bd" target="_blank"  >BRAC University</a>, Dhaka
+            </p>
+            <p class="exp-desc">
+              Began undergraduate studies in Computer Science and Engineering.
+              First semester courses introduced programming fundamentals,
+              discrete mathematics, and university-level English. This is where
+              the serious learning began.
+            </p>
+            <div>
+              <span class="tech-pill">Python</span>
+              <span class="tech-pill">C</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="footer-copy">&copy; 2026 Izaz Alam. All rights reserved.</p>
+      <p class="footer-meta">Location: <span id="page-location">Loading...</span></p>
+<p class="footer-meta">Last Modified: <span id="last-modified">Loading...</span></p>
+    </footer>
+  </main>
+  <script>
+    
+    document.getElementById("page-location").textContent = window.location.href;
+    
+    
+    document.getElementById("last-modified").textContent = document.lastModified;
+  </script>
+</body>
+</html>

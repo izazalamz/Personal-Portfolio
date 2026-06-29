@@ -1,0 +1,1015 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Izaz Alam — CS student at BRAC University. Personal homepage showcasing skills, projects, and interests.">
+  <meta name="author" content="Izaz Alam">
+  <meta name="keywords" content="Izaz Alam, BRAC University, CS, web development, backend, portfolio">
+  <title>Izaz Alam | Personal Homepage</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* =========================================
+       INDEX PAGE SPECIFIC STYLES
+       ========================================= */
+
+    /* HERO */
+    #home {
+      display: flex;
+      align-items: center;
+      gap: 3rem;
+      min-height: 60vh;
+      padding-top: 1rem;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-greeting {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .hero-greeting::before {
+      content: "";
+      display: inline-block;
+      width: 24px;
+      height: 1px;
+      background-color: var(--accent);
+    }
+
+    .hero-name {
+      font-size: 3.5rem;
+      font-weight: 800;
+      line-height: 1.1;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+
+    .hero-name span {
+      color: var(--accent);
+    }
+
+    .hero-role {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      font-weight: 400;
+    }
+
+    .hero-desc {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      max-width: 480px;
+      line-height: 1.8;
+      margin-bottom: 2rem;
+    }
+
+    .hero-inline-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hero-inline-link:hover {
+      text-decoration: underline;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.75rem;
+      background-color: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    .hero-cta:hover {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    .hero-photo {
+      flex-shrink: 0;
+    }
+
+    .hero-photo-frame {
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      border: 2px solid var(--border-accent);
+      overflow: hidden;
+      box-shadow: 0 0 40px var(--accent-glow);
+      background-color: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .hero-photo-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+    }
+
+    .about-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem;
+      transition: border-color var(--transition);
+    }
+
+    .about-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .about-card p {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      line-height: 1.8;
+    }
+
+    .about-card p a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .about-card p a:hover {
+      text-decoration: underline;
+    }
+
+    .about-card-title {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      margin-bottom: 0.75rem;
+      font-weight: 600;
+    }
+
+    /* EDUCATION */
+    .education-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 2rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      transition: border-color var(--transition);
+    }
+
+    .education-card:hover {
+      border-color: var(--border-accent);
+    }
+
+    .education-badge {
+      width: 48px;
+      height: 48px;
+      background-color: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.25rem;
+    }
+
+    .education-info h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+
+    .education-info p {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.2rem;
+    }
+
+    .education-info a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .education-info a:hover {
+      text-decoration: underline;
+    }
+
+    .education-year {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      letter-spacing: 0.05em;
+    }
+
+    .education-note {
+      margin-top: 0.6rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    /* SKILLS */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+
+    .skill-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem;
+      text-align: center;
+      transition: border-color var(--transition), background-color var(--transition);
+      cursor: default;
+    }
+
+    .skill-card:hover {
+      border-color: var(--border-accent);
+      background-color: var(--accent-dim);
+    }
+
+    .skill-icon {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      margin: 0 auto 0.5rem;
+      display: block;
+    }
+
+    .skill-icon-group {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .skill-icon-group .skill-icon {
+      margin: 0;
+    }
+
+    .skill-name {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .skill-card:hover .skill-name {
+      color: var(--accent);
+    }
+
+    /* QUOTE */
+    .quote-block {
+      background-color: var(--bg-card);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 2rem 2.5rem;
+      position: relative;
+    }
+
+    .quote-mark {
+      font-size: 4rem;
+      color: var(--accent);
+      opacity: 0.2;
+      line-height: 1;
+      position: absolute;
+      top: 1rem;
+      left: 1.5rem;
+      font-family: Georgia, serif;
+    }
+
+    .quote-text {
+      font-size: 1.15rem;
+      font-style: italic;
+      color: var(--text-primary);
+      line-height: 1.8;
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+
+    .quote-author {
+      font-size: 0.8rem;
+      color: var(--accent);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      padding-left: 1.5rem;
+    }
+
+    /* BOOKS */
+    .books-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+      list-style: none;
+    }
+
+    .book-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.9rem 1.1rem;
+      transition: border-color var(--transition);
+    }
+
+    .book-item:hover {
+      border-color: var(--border-accent);
+    }
+
+    .book-number {
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      min-width: 28px;
+    }
+
+    .book-title {
+      font-size: 0.85rem;
+      color: var(--text-secondary);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+    .book-author {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.15rem;
+    }
+
+    /* ROADMAP TABLE */
+
+.table-wrapper{
+    overflow-x:auto;
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+}
+
+.roadmap-table{
+    width:100%;
+    min-width:850px;
+    border-collapse:collapse;
+    background:var(--bg-card);
+    font-size:.9rem;
+}
+
+.roadmap-table th,
+.roadmap-table td{
+    border:1px solid var(--border);
+    padding:1rem 1.2rem;
+    vertical-align:top;
+    text-align:left;
+}
+
+.roadmap-table thead tr:first-child th{
+    background:var(--accent-dim);
+    color:var(--accent);
+    text-align:center;
+    font-size:1rem;
+    font-weight:700;
+    letter-spacing:.08em;
+    text-transform:uppercase;
+}
+
+.roadmap-table thead tr:last-child{
+    background:var(--bg-secondary);
+}
+
+.roadmap-table thead tr:last-child th{
+    color:var(--text-primary);
+    font-size:.75rem;
+    text-transform:uppercase;
+    letter-spacing:.08em;
+}
+
+.roadmap-table tbody tr:nth-child(odd){
+    background:var(--bg-card);
+}
+
+.roadmap-table tbody tr:nth-child(even){
+    background:var(--bg-secondary);
+}
+
+/* .roadmap-table tbody tr:hover{
+    background:var(--accent-dim);
+} */
+
+.roadmap-table td strong{
+    color:var(--accent);
+    display:block;
+    margin-bottom:.5rem;
+}
+
+.roadmap-table td{
+    color:var(--text-secondary);
+    line-height:1.8;
+}
+
+.roadmap-table tr td:first-child{
+    width:180px;
+}
+
+.roadmap-table tr:nth-child(1)  td:nth-child(2),
+.roadmap-table tr:nth-child(4)  td:nth-child(2),
+.roadmap-table tr:nth-child(6)  td:nth-child(2)
+{
+    width:130px;
+    font-weight:600;
+    color:var(--text-primary);
+}
+.roadmap-table tr:nth-child(2)  td:nth-child(1),
+.roadmap-table tr:nth-child(3)  td:nth-child(1),
+.roadmap-table tr:nth-child(5)  td:nth-child(1),
+.roadmap-table tr:nth-child(7)  td:nth-child(1)
+{
+    width:130px;
+    font-weight:600;
+    color:var(--text-primary);
+}
+@media (max-width:768px){
+
+    .table-wrapper{
+        overflow-x:auto;
+        -webkit-overflow-scrolling:touch;
+    }
+
+    .roadmap-table{
+        min-width:850px;
+    }
+
+}
+
+    /* CONTACT FORM  */
+    .contact-intro {
+      font-size: 0.95rem;
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.8;
+    }
+
+    .contact-intro strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .contact-intro a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .contact-intro a:hover {
+      text-decoration: underline;
+    }
+
+    .contact-form {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 2rem;
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1rem;
+    }
+
+    .form-group label {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .form-group label span {
+      color: var(--accent);
+    }
+
+    .form-group input,
+    .form-group textarea {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.8rem 1rem;
+      color: var(--text-primary);
+      font-family: var(--font-main);
+      font-size: 0.875rem;
+      transition: border-color var(--transition);
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: var(--text-muted);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 140px;
+    }
+
+    .form-submit {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.8rem 2rem;
+      background-color: transparent;
+      border: 1px solid var(--accent);
+      border-radius: 50px;
+      color: var(--accent);
+      font-family: var(--font-main);
+      font-size: 0.875rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      cursor: pointer;
+      transition: background-color var(--transition), color var(--transition);
+    }
+
+    .form-submit:hover {
+      background-color: var(--accent);
+      color: var(--bg-primary);
+    }
+
+    /* RESPONSIVE — INDEX */
+    @media (max-width: 900px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+      .books-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-name {
+        font-size: 2.75rem;
+      }
+    }
+
+    @media (max-width: 680px) {
+      #home {
+        flex-direction: column-reverse;
+        text-align: center;
+        min-height: unset;
+        gap: 2rem;
+      }
+      .hero-greeting {
+        justify-content: center;
+      }
+      .hero-name {
+        font-size: 2.2rem;
+      }
+      .hero-desc {
+        margin: 0 auto 2rem;
+      }
+      .hero-photo-frame {
+        width: 160px;
+        height: 160px;
+      }
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 1.6rem;
+      }
+      .skills-grid {
+        grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger Toggle -->
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <div class="sidebar-overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <img src="images/dp.png" alt="Izaz Alam">
+      </div>
+      <div class="sidebar-logo-text">Izaz Alam<span>CS Student</span></div>
+    </div>
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="#home" class="active"><span class="nav-icon"><img src="images/icons/home.png" alt="Home"></span>Home</a></li>
+        <li><a href="#about"><span class="nav-icon"><img src="images/icons/profile.png" alt="About Me"></span>About Me</a></li>
+        <li><a href="#education"><span class="nav-icon"><img src="images/icons/education.png" alt="Education"></span>Education</a></li>
+        <li><a href="#skills"><span class="nav-icon"><img src="images/icons/skills.png" alt="Skills"></span>Skills</a></li>
+        <li><a href="#quote"><span class="nav-icon"><img src="images/icons/quote.png" alt="Quote"></span>Quote</a></li>
+        <li><a href="#books"><span class="nav-icon"><img src="images/icons/book.png" alt="Books"></span>Books</a></li>
+        <li><a href="#roadmap"><span class="nav-icon"><img src="images/icons/roadmap.png" alt="Roadmap"></span>Roadmap</a></li>
+        <li><a href="hobbies.html"><span class="nav-icon"><img src="images/icons/hobbies.png" alt="Hobbies"></span>Hobbies</a></li>
+        <li><a href="projects.html"><span class="nav-icon"><img src="images/icons/project.png" alt="Projects"></span>Projects</a></li>
+        <li><a href="#contact"><span class="nav-icon"><img src="images/icons/contact.png" alt="Contact"></span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-contact-item">
+        <div class="sidebar-contact-label">Email</div>
+        <div class="sidebar-contact-value"><a href="mailto:izazalam74@gmail.com">izazalam74@gmail.com</a></div>
+      </div>
+      <div class="sidebar-contact-item">
+        <div class="sidebar-contact-label">Location</div>
+        <div class="sidebar-contact-value">Dhaka, Bangladesh</div>
+      </div>
+      <div class="sidebar-socials">
+        <a href="https://github.com/izazalamz/" target="_blank" class="social-btn" title="GitHub"><img src="images/icons/github.png" alt="GitHub"></a>
+        <a href="https://www.linkedin.com/in/izazalam/" target="_blank" class="social-btn" title="LinkedIn"><img src="images/icons/linkedin.png" alt="LinkedIn"></a>
+        <a href="https://discord.gg/kfs8DwbRc" target="_blank" class="social-btn" title="CSE 391 Discord"><img src="images/icons/discord.png" alt="Discord"></a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- HERO -->
+    <section class="section" id="home">
+      <div class="hero-text">
+        <p class="hero-greeting">Hi there</p>
+        <h1 class="hero-name"><span>Izaz</span> Alam</h1>
+        <p class="hero-role">CS Student &amp; Aspiring Backend Developer</p>
+        <p class="hero-desc">
+          I study Computer Science at
+          <a href="https://www.bracu.ac.bd" target="_blank"   class="hero-inline-link">BRAC University</a>
+          and I'm passionate about building useful web and app solutions that solve real everyday problems.
+          I lean toward backend systems and full-stack development.
+        </p>
+        <a href="#contact" class="hero-cta">Get In Touch &#8594;</a>
+      </div>
+      <div class="hero-photo">
+        <div class="hero-photo-frame">
+          <img src="images/dp.png" alt="Photo of Izaz Alam">
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section class="section" id="about">
+      <p class="section-eyebrow">Get to know me</p>
+      <h2 class="section-title">About <span>Me</span></h2>
+      <div class="section-divider"></div>
+      <div class="about-grid">
+        <div class="about-card">
+          <p class="about-card-title">Who I Am</p>
+          <p>I'm Izaz Alam, a Computer Science student at <a href="https://www.bracu.ac.bd" target="_blank"  >BRAC University</a> based in Dhaka, Bangladesh. I'm curious by nature and love understanding how things work under the hood — especially when it comes to software systems.</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-title">What I'm Into</p>
+          <p>Outside of academics, I'm deeply interested in <strong>backend development</strong> and building web/app tools that solve real-world problems. My goal is to create software that is practical, efficient, and genuinely useful in daily life — not just impressive on paper.</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-title">Where I'm Heading</p>
+          <p>I want to grow as a developer who can design robust server-side systems, work with databases, and build end-to-end applications. I'm always building things on the side to sharpen my skills and turn ideas into working tools.</p>
+        </div>
+        <div class="about-card">
+          <p class="about-card-title">Quick Links</p>
+          <p>Check out my <a href="hobbies.html">hobbies page</a> to see what I do beyond coding, or head over to my <a href="projects.html">projects page</a> to see what I've been building. Also join our course community on the <a href="https://discord.gg/kfs8DwbRc" target="_blank"  >CSE 391 Discord</a>.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- EDUCATION -->
+    <section class="section" id="education">
+      <p class="section-eyebrow">Academic Background</p>
+      <h2 class="section-title">Education</h2>
+      <div class="section-divider"></div>
+      <div class="education-card">
+        <div class="education-badge">&#127979;</div>
+        <div class="education-info">
+          <h3>Bachelor of Science in Computer Science</h3>
+          <p><a href="https://www.bracu.ac.bd" target="_blank"  >BRAC University</a> &mdash; Dhaka, Bangladesh</p>
+          <p class="education-year">2022 &ndash; Present &nbsp;&bull;&nbsp; Currently Enrolled</p>
+          <p class="education-note">Coursework includes Data Structures, Algorithms, Database Systems, OOP, and <em>Programming for the Internet (CSE 391)</em> — the course this page was built for.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <section class="section" id="skills">
+      <p class="section-eyebrow">What I Work With</p>
+      <h2 class="section-title">Technical <span>Skills</span></h2>
+      <div class="section-divider"></div>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <img class="skill-icon" src="images/icons/python.png" alt="Python">
+          <div class="skill-name">Python</div>
+        </div>
+        <div class="skill-card">
+          <img class="skill-icon" src="images/icons/js.png" alt="JavaScript">
+          <div class="skill-name">JavaScript</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon-group">
+            <img class="skill-icon" src="images/icons/html.png" alt="HTML">
+            <img class="skill-icon" src="images/icons/css.png" alt="CSS">
+          </div>
+          <div class="skill-name">HTML / CSS</div>
+        </div>
+        <div class="skill-card">
+          <img class="skill-icon" src="images/icons/postgre.png" alt="PostgreSQL">
+          <div class="skill-name">PostgreSQL</div>
+        </div>
+        <div class="skill-card">
+          <img class="skill-icon" src="images/icons/git.png" alt="Git / GitHub">
+          <div class="skill-name">Git / GitHub</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- QUOTE -->
+    <section class="section" id="quote">
+      <p class="section-eyebrow">Words I Live By</p>
+      <h2 class="section-title">Favorite <span>Quote</span></h2>
+      <div class="section-divider"></div>
+      <div class="quote-block">
+        <div class="quote-mark">&ldquo;</div>
+        <p class="quote-text">You have power over your mind &mdash; not outside events. Realize this, and you will find strength.</p>
+        <p class="quote-author">&mdash; Marcus Aurelius, <em>Meditations</em></p>
+      </div>
+    </section>
+
+    <!-- BOOKS LIST -->
+    <section class="section" id="books">
+      <p class="section-eyebrow">My Reading List</p>
+      <h2 class="section-title">Top 10 Favorite <span>Books</span></h2>
+      <div class="section-divider"></div>
+      <ol class="books-grid">
+        <li class="book-item"><span class="book-number">01</span><div><div class="book-title">Meditations</div><div class="book-author">Marcus Aurelius</div></div></li>
+        <li class="book-item"><span class="book-number">02</span><div><div class="book-title">Atomic Habits</div><div class="book-author">James Clear</div></div></li>
+        <li class="book-item"><span class="book-number">03</span><div><div class="book-title">Deep Work</div><div class="book-author">Cal Newport</div></div></li>
+        <li class="book-item"><span class="book-number">04</span><div><div class="book-title">The Alchemist</div><div class="book-author">Paulo Coelho</div></div></li>
+        <li class="book-item"><span class="book-number">05</span><div><div class="book-title">The Subtle Art of Not Giving a F*ck</div><div class="book-author">Mark Manson</div></div></li>
+        <li class="book-item"><span class="book-number">06</span><div><div class="book-title">তাসাওউফ ও আত্মশুদ্ধি</div><div class="book-author">শাইখুল ইসলাম মুফতী মুহাম্মাদ তাকী উসমানী</div></div></li>
+        <li class="book-item"><span class="book-number">07</span><div><div class="book-title">The Republic</div><div class="book-author">Plato</div></div></li>
+        <li class="book-item"><span class="book-number">08</span><div><div class="book-title">Human Nature</div><div class="book-author">Robert Greene</div></div></li>
+        <li class="book-item"><span class="book-number">09</span><div><div class="book-title">The Prince</div><div class="book-author">Niccolò Machiavelli</div></div></li>
+        <li class="book-item"><span class="book-number">10</span><div><div class="book-title">The Art of Thinking Clearly</div><div class="book-author">Rolf Dobelli</div></div></li>
+        <li class="book-item"><span class="book-number">11</span><div><div class="book-title">The Almanack of Naval Ravikant</div><div class="book-author">Eric Jorgenson</div></div></li>
+      </ol>
+    </section>
+
+    <!-- LEARNING ROADMAP -->
+<section class="section" id="roadmap">
+
+  <p class="section-eyebrow">My Journey</p>
+  <h2 class="section-title">Backend <span>Learning Roadmap</span></h2>
+  <div class="section-divider"></div>
+
+  <div class="table-wrapper">
+
+    <table class="roadmap-table">
+
+      <thead>
+
+        <tr>
+          <th colspan="4">
+            Backend Development Roadmap (2025 – 2026)
+          </th>
+        </tr>
+
+        <tr>
+          <th>Stage</th>
+          <th>Technology</th>
+          <th>Primary Goal</th>
+          <th>Learning Notes</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td rowspan="3">
+            <strong>Foundation</strong><br>
+            Building solid web fundamentals.
+          </td>
+
+          <td>HTML</td>
+
+          <td>Create semantic and accessible web pages.</td>
+
+          <td>
+            Master semantic HTML, forms, tables, accessibility,
+            and clean page structure before moving to styling.
+          </td>
+        </tr>
+
+        <tr>
+
+          <td>CSS</td>
+
+          <td>Design responsive modern interfaces.</td>
+
+          <td>
+            Focus on Flexbox, Grid, responsive layouts,
+            animations, transitions, and reusable styling.
+          </td>
+
+        </tr>
+
+        <tr>
+
+          <td>JavaScript</td>
+
+          <td>Make websites interactive.</td>
+
+          <td>
+            Learn ES6+, DOM manipulation, asynchronous programming,
+            APIs, and problem solving.
+          </td>
+
+        </tr>
+
+        <tr>
+
+          <td rowspan="2">
+            <strong>Backend</strong><br>
+            Building server-side applications.
+          </td>
+
+          <td>Node.js</td>
+
+          <td>Create scalable backend applications.</td>
+
+          <td>
+            Understand asynchronous programming,
+            modules, file systems, and server architecture.
+          </td>
+
+        </tr>
+
+        <tr>
+
+          <td>Express.js</td>
+
+          <td>Develop RESTful APIs.</td>
+
+          <td>
+            Learn routing, middleware, authentication,
+            authorization, and project organization.
+          </td>
+
+        </tr>
+
+        <tr>
+
+          <td rowspan="2">
+            <strong>Database</strong><br>
+            Store and manage application data.
+          </td>
+
+          <td>PostgreSQL</td>
+
+          <td>Design relational databases.</td>
+
+          <td>
+            Practice normalization, joins,
+            indexing, transactions, and advanced SQL queries.
+          </td>
+
+        </tr>
+
+        <tr>
+
+          <td>Prisma ORM</td>
+
+          <td>Connect applications with databases.</td>
+
+          <td>
+            Simplify database interaction,
+            migrations, schema management,
+            and efficient querying.
+          </td>
+
+        </tr>
+
+        <tr>
+
+          <td colspan="2">
+            <strong>Current Focus</strong>
+          </td>
+
+          <td colspan="2">
+            Build complete backend applications that combine authentication,
+            databases, REST APIs, clean architecture, and deployment while
+            continuously improving problem-solving and software design skills.
+          </td>
+
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </div>
+
+</section>
+
+    <!-- CONTACT  -->
+    <section class="section" id="contact">
+      <p class="section-eyebrow">Reach Out</p>
+      <h2 class="section-title">Get In <span>Touch</span></h2>
+      <div class="section-divider"></div>
+      <p class="contact-intro">
+        Have a project idea, a question, or just want to say hello?
+        <strong>I'm always open to a good conversation.</strong>
+        You can also find me on the <a href="https://discord.gg/kfs8DwbRc" target="_blank"  >CSE 391 Discord</a>
+        or reach out directly via the form below.
+      </p>
+      <div class="contact-form">
+        <form action="#" method="POST">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contact-name">Name <span>*</span></label>
+              <input type="text" id="contact-name" name="name" placeholder="Your Full Name" required>
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email <span>*</span></label>
+              <input type="email" id="contact-email" name="email" placeholder="Your Email Address" required>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="contact-subject">Subject <span>*</span></label>
+            <input type="text" id="contact-subject" name="subject" placeholder="Your Subject" required>
+          </div>
+          <div class="form-group">
+            <label for="contact-message">Message <span>*</span></label>
+            <textarea id="contact-message" name="message" placeholder="Write your message here..." required></textarea>
+          </div>
+          <button type="submit" class="form-submit">Send Message &#8594;</button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="footer-copy">&copy; 2026 Izaz Alam. All rights reserved.</p>
+      <p class="footer-meta">Location: <span id="page-location">Loading...</span></p>
+<p class="footer-meta">Last Modified: <span id="last-modified">Loading...</span></p>
+    </footer>
+  </main>
+  <script>
+    
+    document.getElementById("page-location").textContent = window.location.href;
+    
+   
+    document.getElementById("last-modified").textContent = document.lastModified;
+  </script>
+</body>
+</html>

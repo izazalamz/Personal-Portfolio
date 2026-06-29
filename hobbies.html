@@ -1,0 +1,593 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Izaz Alam's hobbies — reading and travelling. A glimpse into life beyond code.">
+  <meta name="author" content="Izaz Alam">
+  <meta name="keywords" content="Izaz Alam, hobbies, reading, travelling, books, BRAC University">
+  <title>Hobbies | Izaz Alam</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* =========================================
+       HOBBIES PAGE SPECIFIC STYLES
+       ========================================= */
+
+    .hobby-section {
+      margin-bottom: 5rem;
+      padding-bottom: 3rem;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .hobby-section:last-of-type {
+      border-bottom: none;
+    }
+
+    .hobby-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .hobby-number {
+      font-size: 3.5rem;
+      font-weight: 800;
+      color: var(--border-accent);
+      line-height: 1;
+      letter-spacing: -0.04em;
+      flex-shrink: 0;
+      user-select: none;
+    }
+
+    .hobby-title {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .hobby-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    .hobby-body {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .hobby-image-wrap {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      height: 240px;
+      background-color: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+    }
+
+    .hobby-image-wrap.img-fallback::after {
+      content: attr(aria-label);
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 1rem;
+    }
+
+    .hobby-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.4s ease;
+    }
+
+    .hobby-image-wrap:hover .hobby-img {
+      transform: scale(1.04);
+    }
+
+    .hobby-text p {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      line-height: 1.9;
+      margin-bottom: 1rem;
+    }
+
+    .hobby-text p em {
+      color: var(--text-primary);
+      font-style: italic;
+    }
+
+    .hobby-text p strong {
+      color: var(--text-primary);
+      font-weight: 600;
+    }
+
+    .hobby-text p a {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .hobby-text p a:hover {
+      text-decoration: underline;
+    }
+
+    .hobby-tags {
+      margin-top: 1.25rem;
+    }
+
+    /* READING — Currently Reading */
+    .reading-currently {
+      margin-top: 1.5rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      transition: border-color var(--transition);
+    }
+
+    .reading-currently:hover {
+      border-color: var(--border-accent);
+    }
+
+    .currently-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    .currently-book {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .currently-book-cover {
+      width: 40px;
+      height: 56px;
+      background-color: var(--accent-dim);
+      border: 1px solid var(--border-accent);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      color: var(--accent);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .currently-book-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.15rem;
+    }
+
+    .currently-book-author {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    /* Stats Strip */
+    .stat-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1rem;
+      margin-top: 2rem;
+    }
+
+    .stat-item {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.25rem 1.5rem;
+      text-align: center;
+      transition: border-color var(--transition);
+    }
+
+    .stat-item:hover {
+      border-color: var(--border-accent);
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 0.4rem;
+    }
+
+    .stat-value span {
+      font-size: 1.2rem;
+    }
+
+    .stat-label {
+      font-size: 0.7rem;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+    }
+
+    /* Places Grid */
+    .places-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .places-grid-header {
+      grid-column: 1 / -1;
+    }
+
+    .places-grid-header h3 {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.2rem;
+    }
+
+    .places-grid-header p {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .places-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .place-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.8rem;
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.85rem 1rem;
+      transition: border-color var(--transition);
+    }
+
+    .place-item:hover {
+      border-color: var(--border-accent);
+    }
+
+    .place-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: var(--accent);
+      flex-shrink: 0;
+      margin-top: 0.3rem;
+    }
+
+    .place-name {
+      display: block;
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.1rem;
+    }
+
+    .place-note {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+    }
+
+    .bucket-list {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent);
+      border-radius: 0 var(--radius) var(--radius) 0;
+      padding: 1.25rem 1.5rem;
+      align-self: start;
+    }
+
+    .bucket-label {
+      font-size: 0.65rem;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+
+    .bucket-list ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .bucket-list ul li {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      padding-left: 1rem;
+      position: relative;
+    }
+
+    .bucket-list ul li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.75rem;
+    }
+
+    /* RESPONSIVE — HOBBIES */
+    @media (max-width: 900px) {
+      .hobby-body {
+        grid-template-columns: 1fr;
+      }
+      .hobby-image-wrap {
+        height: 200px;
+      }
+      .places-grid {
+        grid-template-columns: 1fr;
+      }
+      .stat-strip {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    @media (max-width: 680px) {
+      .hobby-number {
+        font-size: 2.5rem;
+      }
+      .stat-strip {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hamburger Toggle -->
+  <input type="checkbox" id="menu-toggle">
+  <label for="menu-toggle" class="hamburger" aria-label="Toggle navigation">
+    <span></span>
+    <span></span>
+    <span></span>
+  </label>
+
+  <div class="sidebar-overlay" id="overlay"></div>
+
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-logo">
+      <div class="sidebar-logo-icon">
+        <img src="images/dp.png" alt="Izaz Alam">
+      </div>
+      <div class="sidebar-logo-text">Izaz Alam<span>CS Student</span></div>
+    </div>
+    <nav class="sidebar-nav" aria-label="Main navigation">
+      <ul>
+        <li><a href="index.html"><span class="nav-icon"><img src="images/icons/home.png" alt="Home"></span>Home</a></li>
+        <li><a href="index.html#about"><span class="nav-icon"><img src="images/icons/profile.png" alt="About Me"></span>About Me</a></li>
+        <li><a href="index.html#education"><span class="nav-icon"><img src="images/icons/education.png" alt="Education"></span>Education</a></li>
+        <li><a href="index.html#skills"><span class="nav-icon"><img src="images/icons/skills.png" alt="Skills"></span>Skills</a></li>
+        <li><a href="index.html#quote"><span class="nav-icon"><img src="images/icons/quote.png" alt="Quote"></span>Quote</a></li>
+        <li><a href="index.html#books"><span class="nav-icon"><img src="images/icons/book.png" alt="Books"></span>Books</a></li>
+        <li><a href="index.html#roadmap"><span class="nav-icon"><img src="images/icons/roadmap.png  " alt="Roadmap"></span>Roadmap</a></li>
+        <li><a href="hobbies.html" class="active"><span class="nav-icon"><img src="images/icons/hobbies.png" alt="Hobbies"></span>Hobbies</a></li>
+        <li><a href="projects.html"><span class="nav-icon"><img src="images/icons/project.png" alt="Projects"></span>Projects</a></li>
+        <li><a href="index.html#contact"><span class="nav-icon"><img src="images/icons/contact.png" alt="Contact"></span>Contact</a></li>
+      </ul>
+    </nav>
+    <div class="sidebar-footer">
+      <div class="sidebar-contact-item">
+        <div class="sidebar-contact-label">Email</div>
+        <div class="sidebar-contact-value"><a href="mailto:izazalam74@gmail.com">izazalam74@gmail.com</a></div>
+      </div>
+      <div class="sidebar-contact-item">
+        <div class="sidebar-contact-label">Location</div>
+        <div class="sidebar-contact-value">Dhaka, Bangladesh</div>
+      </div>
+      <div class="sidebar-socials">
+        <a href="https://github.com/izazalamz/" target="_blank" class="social-btn" title="GitHub"><img src="images/icons/github.png" alt="GitHub"></a>
+        <a href="https://www.linkedin.com/in/izazalam/" target="_blank" class="social-btn" title="LinkedIn"><img src="images/icons/linkedin.png" alt="LinkedIn"></a>
+        <a href="https://discord.gg/kfs8DwbRc" target="_blank" class="social-btn" title="CSE 391 Discord"><img src="images/icons/discord.png" alt="Discord"></a>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main-content">
+
+    <!-- PAGE HEADER -->
+    <section class="page-header">
+      <p class="page-eyebrow">Life Beyond Code</p>
+      <h1 class="page-title">My <span>Hobbies</span></h1>
+      <div class="page-divider"></div>
+      <p class="page-intro">
+        I believe who you are outside the terminal defines the depth you bring to the work inside it.
+        Here are the two things I keep returning to — no matter how busy the semester gets.
+      </p>
+    </section>
+
+    <!-- ===== HOBBY 1: READING ===== -->
+    <section class="hobby-section" id="reading">
+      <div class="hobby-header">
+        <div class="hobby-number">01</div>
+        <div>
+          <h2 class="hobby-title">Reading</h2>
+          <p class="hobby-subtitle">Books that have shaped how I think</p>
+        </div>
+      </div>
+
+      <div class="hobby-body">
+        <div class="hobby-image-wrap">
+         <img src="https://images.unsplash.com/photo-1550399105-c4db5fb85c18?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Travel scene — open road and landscape" class="hobby-img">
+        </div>
+
+        <div class="hobby-text">
+          <p>
+            Reading is my slowest and most rewarding habit. I gravitate toward non-fiction — especially
+            philosophy, productivity, and technology — but I'll pick up a well-recommended novel without hesitation.
+            There's something powerful about sitting with a book that was written decades ago and realizing it's still
+            describing today.
+          </p>
+          <p>
+            Marcus Aurelius's <em>Meditations</em> is the book I return to most. It's not a story — it's a
+            collection of private reminders a Roman emperor wrote to himself. That rawness makes it more
+            honest than most modern self-help ever manages to be.
+          </p>
+          <p>
+            I also enjoy reading about software craft — books like <em>Clean Code</em> and
+            <em>The Pragmatic Programmer</em> read less like textbooks and more like mentorship from
+            engineers who've already made every mistake you're about to make.
+          </p>
+
+          <div class="hobby-tags">
+            <span class="hobby-tag">Philosophy</span>
+            <span class="hobby-tag">Productivity</span>
+            <span class="hobby-tag">Technology</span>
+            <span class="hobby-tag">Fiction</span>
+            <span class="hobby-tag">Self-improvement</span>
+          </div>
+
+          <div class="reading-currently">
+            <p class="currently-label">Currently Reading</p>
+            <div class="currently-book">
+              <div class="currently-book-cover">CR</div>
+              <div>
+                <p class="currently-book-title">Deep Work</p>
+                <p class="currently-book-author">Cal Newport</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="stat-strip">
+        <div class="stat-item">
+          <div class="stat-value">25<span>+</span></div>
+          <div class="stat-label">Books Read</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">11</div>
+          <div class="stat-label">All-Time Favorites</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-value">3</div>
+          <div class="stat-label">Currently On List</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== HOBBY 2: TRAVELLING ===== -->
+    <section class="hobby-section" id="travelling">
+      <div class="hobby-header">
+        <div class="hobby-number">02</div>
+        <div>
+          <h2 class="hobby-title">Travelling</h2>
+          <p class="hobby-subtitle">Places I've been and places I'm headed</p>
+        </div>
+      </div>
+
+      <div class="hobby-body">
+        <div class="hobby-image-wrap">
+          <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80" alt="Travel scene — open road and landscape" class="hobby-img" onerror="this.parentElement.classList.add('img-fallback'); this.parentElement.setAttribute('aria-label','Image placeholder: Travelling')">
+        </div>
+
+        <div class="hobby-text">
+          <p>
+            Travelling changes your reference frame. It's the most effective way I know to realize
+            that most of what feels like "normal" is actually just local — a product of where you grew up,
+            not how things have to be. Every trip recalibrates something.
+          </p>
+          <p>
+            Growing up in <strong>Dhaka</strong> — one of the world's most densely packed cities —
+            I've always been drawn to places that feel like the opposite: mountains, open coastlines,
+            quiet towns. Bangladesh itself has more of this than most people realize.
+            
+          </p>
+          <p>
+            My favourite kind of travel is slow travel — staying long enough in a place that you stop
+            being a tourist and start noticing how people actually live. I'm less interested in
+            checking off landmarks and more interested in finding a good local café and watching the
+            city from inside it.
+          </p>
+
+          <div class="hobby-tags">
+            <span class="hobby-tag">Mountains</span>
+            <span class="hobby-tag">Coastal</span>
+            <span class="hobby-tag">Slow Travel</span>
+            <span class="hobby-tag">Local Culture</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="places-grid">
+        <div class="places-grid-header">
+          <h3>Places I've Visited</h3>
+          <p>A running log — updated as I go</p>
+        </div>
+        <ul class="places-list">
+          <li class="place-item">
+            <span class="place-dot"></span>
+            <div>
+              <span class="place-name">Sundarbans, Bangladesh</span>
+              <span class="place-note">World's largest mangrove forest</span>
+            </div>
+          </li>
+          <li class="place-item">
+            <span class="place-dot"></span>
+            <div>
+              <span class="place-name">Sylhet, Bangladesh</span>
+              <span class="place-note">Tea gardens and waterfalls</span>
+            </div>
+          </li>
+          <li class="place-item">
+            <span class="place-dot"></span>
+            <div>
+              <span class="place-name">Sreemongol, Bangladesh</span>
+              <span class="place-note">Land of tea gardens and rolling hills</span>
+            </div>
+          </li>
+        </ul>
+
+        <div class="bucket-list">
+          <p class="bucket-label">On The Bucket List</p>
+          <ul>
+            <li>Bandarban, Bangladesh — Hill tracts and tribal culture</li>
+            <li>Cox's Bazar, Bangladesh — World's longest natural sea beach</li>
+            <li>Kolkata, India — Colonial architecture and street food</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer class="site-footer">
+      <p class="footer-copy">&copy; 2026 Izaz Alam. All rights reserved.</p>
+      <p class="footer-meta">Location: <span id="page-location">Loading...</span></p>
+<p class="footer-meta">Last Modified: <span id="last-modified">Loading...</span></p>
+    </footer>
+  </main>
+  <script>
+    
+    document.getElementById("page-location").textContent = window.location.href;
+    
+    
+    document.getElementById("last-modified").textContent = document.lastModified;
+  </script>
+</body>
+</html>
